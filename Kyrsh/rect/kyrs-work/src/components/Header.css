@@ -1,0 +1,101 @@
+/* src/components/Header.css */
+.header {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 60px;
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 0;
+  z-index: 1000;
+  border-radius: 20px;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.logo h1 {
+  margin: 0;
+  font-size: 1.8em;
+  /* Увеличим размер текста */
+}
+
+.search-form {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  justify-content: center;
+}
+
+.search-form input {
+  padding: 15px;
+  border-radius: 20px;
+  border: none;
+  margin-right: 10px;
+  width: 400px;
+  font-size: 1em;
+}
+
+.search-form button {
+  padding: 15px 25px;
+  border: none;
+  border-radius: 20px;
+  background-color: white;
+  color: #4CAF50;
+  cursor: pointer;
+  font-size: 1em;
+  /* Увеличим размер текста */
+}
+
+.search-form button:hover {
+  background-color: #45a049;
+}
+
+.header-links {
+  display: flex;
+  align-items: center;
+}
+
+.header-links a {
+  margin-left: 20px;
+  color: white;
+  text-decoration: none;
+  font-size: 1.1em;
+  display: flex;
+  align-items: center;
+}
+
+.header-links a:hover {
+  text-decoration: underline;
+}
+
+.profile-pic {
+  width: 40px;
+  /* Увеличим размер */
+  height: 40px;
+  border-radius: 50%;
+}
+
+.cart-link {
+  position: relative;
+}
+
+.cart-count {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background-color: red;
+  border-radius: 50%;
+  padding: 2px 8px;
+  font-size: 0.9em;
+  /* Увеличим размер текста */
+}

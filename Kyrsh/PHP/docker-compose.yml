@@ -1,0 +1,19 @@
+version: '3'
+services:
+  webserver:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    volumes:
+      - ./html:/var/www/html
+    depends_on:
+      - bdpg
+  bdpg:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: forkyrs
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
