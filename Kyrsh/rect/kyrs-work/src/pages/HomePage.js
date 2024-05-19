@@ -1,107 +1,22 @@
 // src/pages/HomePage.js
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import { Link } from 'react-router-dom';
 import ProductList from '../components/ProductList';
 import './HomePage.css';
 
-// const mockProducts = [
-//   {
-//     id: 1,
-//     name: 'Старый диван',
-//     description: 'Комфортный диван, немного изношен.',
-//     price: 3000,
-//     image: 'path/to/image1.jpg',
-//     popular: true,
-//   },
-//   {
-//     id: 2,
-//     name: 'Деревянный стол',
-//     description: 'Стол из массива дуба, практически новый.',
-//     price: 5000,
-//     image: 'path/to/image2.jpg',
-//     popular: false,
-//   },
-//   {
-//     id: 3,
-//     name: 'Деревянный стол',
-//     description: 'Стол из массива дуба, практически новый.',
-//     price: 5000,
-//     image: 'path/to/image2.jpg',
-//     popular: false,
-//   },
-//   {
-//     id: 5,
-//     name: 'Деревянный стол',
-//     description: 'Стол из массива дуба, практически новый.',
-//     price: 5000,
-//     image: 'path/to/image2.jpg',
-//     popular: false,
-//   },
-//   {
-//     id: 6,
-//     name: 'Деревянный стол',
-//     description: 'Стол из массива дуба, практически новый.',
-//     price: 5000,
-//     image: 'path/to/image2.jpg',
-//     popular: false,
-//   },
-//   {
-//     id: 7,
-//     name: 'Деревянный стол',
-//     description: 'Стол из массива дуба, практически новый.',
-//     price: 5000,
-//     image: 'path/to/image2.jpg',
-//     popular: false,
-//   },
-//   {
-//     id: 8,
-//     name: 'Деревянный стол',
-//     description: 'Стол из массива дуба, практически новый.',
-//     price: 5000,
-//     image: 'path/to/image2.jpg',
-//     popular: false,
-//   },
-//   {
-//     id: 9,
-//     name: 'Деревянный стол',
-//     description: 'Стол из массива дуба, практически новый.',
-//     price: 5000,
-//     image: 'path/to/image2.jpg',
-//     popular: false,
-//   },
-//   {
-//     id: 10,
-//     name: 'Деревянный стол',
-//     description: 'Стол из массива дуба, практически новый.',
-//     price: 5000,
-//     image: 'path/to/image2.jpg',
-//     popular: false,
-//   },
-//   {
-//     id: 11,
-//     name: 'Деревянный стол',
-//     description: 'Стол из массива дуба, практически новый.',
-//     price: 5000,
-//     image: 'path/to/image2.jpg',
-//     popular: false,
-//   },
-//   // Добавьте больше продуктов по аналогии
-// ];
-// const categories = [
-//   { id: 1, name: 'Столы' },
-//   { id: 2, name: 'Стулья' },
-//   { id: 3, name: 'Диваны' },
-//   { id: 4, name: 'Кровати' },
-//   { id: 5, name: 'Кресла' },
-//   { id: 6, name: 'Шкафы' },
-//   // Добавьте больше категорий по аналогии
-// ];
-
 
 const HomePage = () => {
-  const [products, setProducts] = useState(mockProducts);
+  const [products, setProducts] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
+
+  // Функция для получения данных о продуктах из PHP скрипта
+  useEffect(() => {
+    fetch('http://localhost/index.php')
+      .then(response => response.json())
+      .then(data => setProducts(data))
+      .catch(error => console.error('Error fetching products:', error));
+  }, []);
 
   const handleSearch = (query) => {
     setSearchQuery(query);
@@ -117,11 +32,12 @@ const HomePage = () => {
     <div className="homepage">
       <Header onSearch={handleSearch} />
       <div className="categories">
-        {categories.map(category => (
+        {/* Пример категорий, замените на свои данные */}
+        {/* {categories.map(category => (
           <Link key={category.id} to={`/category/${category.id}`} className="category-card">
             <div className="category-name">{category.name}</div>
           </Link>
-        ))}
+        ))} */}
       </div>
       <div className="content">
         <div className="main-content">
@@ -137,4 +53,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage
+export default HomePage;

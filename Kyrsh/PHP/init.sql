@@ -1,8 +1,4 @@
-CREATE DATABASE IF NOT EXISTS forkyrs;
-CREATE USER IF NOT EXISTS 'user'@'%' IDENTIFIED BY 'password';
-GRANT SELECT,UPDATE,INSERT ON forkyrs.* TO 'user'@'%';
-FLUSH PRIVILEGES;
-
+-- Создание таблицы products
 CREATE TABLE IF NOT EXISTS products (
     id SERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
@@ -16,6 +12,7 @@ CREATE TABLE IF NOT EXISTS products (
     address VARCHAR(255)
 );
 
+-- Вставка данных в таблицу products
 INSERT INTO products (name, description, price, category, is_premium, is_popular, main_image_url, full_description, address) 
 VALUES 
 ('Обеденный стол', 'Стол из массива дерева с искусственной краской, размер 150x90 см', 25000.00, 'Мебель', false, false, 'https://cache3.youla.io/files/images/780_780/5d/05/5d051e7ef8efdc61dc5cc936.jpg', 'Красивый и функциональный обеденный стол для вашей кухни или столовой.', 'г. Москва, ул. Примерная, д. 2'),
@@ -26,4 +23,4 @@ VALUES
 ('Стул', 'Деревянный стулья с мягким сиденьем, размер 40x40 см', 5000.00, 'Мебель', false, false, 'https://1000dosok.ru/s/20-09-6611125.jpg', 'Удобный и элегантный стул для вашего обеденного стола.', 'г. Москва, ул. Победы, д. 7'),
 ('Стол', 'Стол письменный с деревянной поверхностью, размер 120x60 см', 10000.00, 'Мебель', false, false, 'https://cache3.youla.io/files/images/780_780/59/7d/597d831e821a990d0b0b0f13.jpg', 'Функциональный и стильный письменный стол для вашего офиса или дома.', 'г. Москва, ул. Фрунзе, д. 8'),
 ('Полка', 'Деревянная полка для хранения книг и декоративных предметов, размер 100x20 см', 7000.00, 'Мебель', false, false, 'https://i.baraholka.com.ru/files/1/9/1917990.jpg', 'Компактная и удобная полка для вашего интерьера.', 'г. Москва, ул. Мира, д. 9'),
-('Кухонный стол', 'Стол для кухни, размер 120x80 см', 18000.00, 'Мебель', false, false, 'https://26.img.avito.st/image/1/1.f1zqy7aB07WcbiGzmPI6GzVo17NIbtOzLwvXs5xuIbNcbN-xXGrT8Q.ZZJ1wixnL51GXnPKGEYtKHXcRaeBeHFyoa2DsA86Ay4', 'Стильный и практичный стол для вашей кухни.', 'г. Москва, ул. Ленинградская, д. 10')
+('Кухонный стол', 'Стол для кухни, размер 120x80 см', 18000.00, 'Мебель', false, false, 'https://26.img.avito.st/image/1/1.f1zqy7aB07WcbiGzmPI6GzVo17NIbtOzLwvXs5xuIbNcbN-xXGrT8Q.ZZJ1wixnL51GXnPKGEYtKHXcRaeBeHFyoa2DsA86Ay4', 'Стильный и практичный стол для вашей кухни.', 'г. Москва, ул. Ленинградская, д. 10');
