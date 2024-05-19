@@ -1,20 +1,23 @@
-// src/pages/HomePage.js
+// HomePage.js
+
 import React, { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import { Link } from 'react-router-dom';
 import ProductList from '../components/ProductList';
 import './HomePage.css';
 
-
 const HomePage = () => {
   const [products, setProducts] = useState([]);
+  const [categories, setCategories] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
 
-  // Функция для получения данных о продуктах из PHP скрипта
   useEffect(() => {
     fetch('http://localhost/index.php')
       .then(response => response.json())
-      .then(data => setProducts(data))
+      .then(data => {
+        setProducts(data.products);
+        setCategories(data.categories);
+      })
       .catch(error => console.error('Error fetching products:', error));
   }, []);
 
@@ -32,12 +35,11 @@ const HomePage = () => {
     <div className="homepage">
       <Header onSearch={handleSearch} />
       <div className="categories">
-        {/* Пример категорий, замените на свои данные */}
-        {/* {categories.map(category => (
-          <Link key={category.id} to={`/category/${category.id}`} className="category-card">
+        {categories.map(category => (
+          <Link key={category.id} to={category.url} className="category-card">
             <div className="category-name">{category.name}</div>
           </Link>
-        ))} */}
+        ))}
       </div>
       <div className="content">
         <div className="main-content">
