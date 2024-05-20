@@ -1,42 +1,44 @@
 .product-card {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    margin: 10px;
-    padding: 10px;
-    background-color: white;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    width: 200px;
-  }
-  
-  .product-card img {
-    width: 100% !important; /* Добавляем !important для переопределения других стилей */
-    height: 200px !important; /* Добавляем !important для переопределения других стилей */
-    object-fit: cover; /* Изображение масштабируется и обрезается по центру */
-    object-position: center;
-    border-radius: 5px;
-  }
-  
-  .product-card .product-info {
-    padding: 10px 0;
-  }
-  
-  .product-card .product-name {
-    font-size: 16px;
-    margin: 10px 0 5px 0;
-    text-align: left;
-  }
-  
-  .product-card .product-price {
-    font-size: 15px;
-    color: #888;
-    text-align: left;
-  }
-  
-  .product-card .product-date {
-    font-size: 14px;
-    color: #aaa;
-    text-align: left;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 10px;
+  padding: 10px;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  width: 200px;
+}
+
+.product-card img {
+  width: 100% !important;
+  /* Добавляем !important для переопределения других стилей */
+  height: 200px !important;
+  /* Добавляем !important для переопределения других стилей */
+  object-fit: cover;
+  /* Изображение масштабируется и обрезается по центру */
+  object-position: center;
+  border-radius: 5px;
+}
+
+.product-card .product-info {
+  padding: 10px 0;
+}
+
+.product-card .product-name {
+  font-size: 16px;
+  margin: 10px 0 5px 0;
+  text-align: left;
+}
+
+.product-card .product-price {
+  font-size: 15px;
+  color: #888;
+  text-align: left;
+}
+
+.product-card .product-date {
+  font-size: 14px;
+  color: #aaa;
+  text-align: left;
+}
