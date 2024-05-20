@@ -14,12 +14,21 @@ try {
 
     $data = json_decode(file_get_contents('php://input'), true);
 
-    if (isset($data['username']) && isset($data['password'])) {
+    if (
+        isset($data['username']) && isset($data['password']) &&
+        isset($data['firstName']) && isset($data['email']) &&
+        isset($data['gender']) && isset($data['address'])
+    ) {
         $username = $data['username'];
         $passwordHash = password_hash($data['password'], PASSWORD_BCRYPT);
+        $firstName = $data['firstName'];
+        $middleName = isset($data['middleName']) ? $data['middleName'] : null;
+        $email = $data['email'];
+        $gender = $data['gender'];
+        $address = $data['address'];
 
-        $stmt = $pdo->prepare("INSERT INTO users (username, password) VALUES (?, ?)");
-        $stmt->execute([$username, $passwordHash]);
+        $stmt = $pdo->prepare("INSERT INTO users (username, password, first_name, middle_name, email, gender, address) VALUES (?, ?, ?, ?, ?, ?, ?)");
+        $stmt->execute([$username, $passwordHash, $firstName, $middleName, $email, $gender, $address]);
 
         echo json_encode(['status' => 'success']);
     } else {

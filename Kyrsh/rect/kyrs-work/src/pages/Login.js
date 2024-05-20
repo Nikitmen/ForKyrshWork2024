@@ -20,7 +20,7 @@ const Login = () => {
     if (data.status === 'success') {
       setMessage('Login successful!');
       localStorage.setItem('user', JSON.stringify(data.user));
-      navigate('/profile'); // Редирект на страницу профиля
+      navigate('/profile');
     } else {
       setMessage(`Error: ${data.message}`);
     }
@@ -32,14 +32,14 @@ const Login = () => {
       <form onSubmit={handleSubmit} className="auth-form">
         <input
           type="text"
-          placeholder="Ваш username"
+          placeholder="Логин"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           className="auth-input"
         />
         <input
           type="password"
-          placeholder="Ваш password"
+          placeholder="Пароль"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           className="auth-input"

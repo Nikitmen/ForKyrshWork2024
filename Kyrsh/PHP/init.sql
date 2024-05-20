@@ -26,6 +26,14 @@ CREATE TABLE users (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+ALTER TABLE users
+ADD COLUMN first_name VARCHAR(50) NOT NULL,
+ADD COLUMN middle_name VARCHAR(50),
+ADD COLUMN email VARCHAR(100) NOT NULL,
+ADD COLUMN gender VARCHAR(10),
+ADD COLUMN address VARCHAR(255);
+
+
 ALTER TABLE products ADD CONSTRAINT fk_products_categories FOREIGN KEY (category_id) REFERENCES categories (id);
 
 INSERT INTO categories (name, slug) VALUES

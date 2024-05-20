@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Auth.css';
+import './AddProduct.css';
 
 const AddProduct = () => {
   const [name, setName] = useState('');
