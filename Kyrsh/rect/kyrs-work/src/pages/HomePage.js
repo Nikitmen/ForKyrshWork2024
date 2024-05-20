@@ -31,31 +31,33 @@ const HomePage = () => {
   }, [selectedCategory]);
 
   return (
-    <div className="homepage">
+    <div>
       <Header />
-      <div className="categories">
-        {categories.map(category => (
-          <button
-            key={category.id}
-            onClick={() => setSelectedCategory(category.slug)}
-            className={`category-card ${selectedCategory === category.slug ? 'active' : ''}`}
-          >
-            <span className="category-name">{category.name}</span>
-          </button>
-        ))}
-      </div>
-      <div className="content">
-        <div className="main-content">
-          <h2>Все товары</h2>
-          <ProductList products={products} />
-          <aside className="sidebar">
-            {popularProducts.length > 0 && (
-              <>
-                <h2>Популярные товары</h2>
-                <ProductList products={popularProducts} />
-              </>
-            )}
-          </aside>
+      <div className="homepage">
+        <div className="categories">
+          {categories.map(category => (
+            <button
+              key={category.id}
+              onClick={() => setSelectedCategory(category.slug)}
+              className={`category-card ${selectedCategory === category.slug ? 'active' : ''}`}
+            >
+              <span className="category-name">{category.name}</span>
+            </button>
+          ))}
+        </div>
+        <div className="content">
+          <div className="main-content">
+            <h2>Все товары</h2>
+            <ProductList products={products} />
+            <aside className="sidebar">
+              {popularProducts.length > 0 && (
+                <>
+                  <h2>Популярные товары</h2>
+                  <ProductList products={popularProducts} />
+                </>
+              )}
+            </aside>
+          </div>
         </div>
       </div>
     </div>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import HomePage from './pages/HomePage';
+import ProductPage from './pages/ProductPage';
 import './App.css';
 
 function App() {
@@ -8,7 +9,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        {/* Здесь можно добавить другие маршруты для личного кабинета, корзины и оформления заказа */}
+        <Route path="/product/:id" element={<ProductPage />} />
       </Routes>
     </Router>
   );
