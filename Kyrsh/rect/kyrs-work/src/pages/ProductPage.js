@@ -30,7 +30,8 @@ const ProductPage = () => {
                         <h1>{product.name}</h1>
                         <p>{product.full_description}</p>
                         <p>{product.price} руб.</p>
-                        <p>Дата публикации: {new Date(product.created_at).toLocaleString('ru-RU')}</p>
+                        <p><span>Дата публикации:</span> {new Date(product.created_at).toLocaleString('ru-RU')}</p>
+                        <p><span>Адрес:</span> {product.address}</p>
                     </div>
                 </div>
             </div>

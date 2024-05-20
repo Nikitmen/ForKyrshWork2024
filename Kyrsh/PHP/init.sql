@@ -19,6 +19,13 @@ CREATE TABLE IF NOT EXISTS categories (
     slug VARCHAR(50) NOT NULL UNIQUE
 );
 
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+    username VARCHAR(50) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
 ALTER TABLE products ADD CONSTRAINT fk_products_categories FOREIGN KEY (category_id) REFERENCES categories (id);
 
 INSERT INTO categories (name, slug) VALUES
