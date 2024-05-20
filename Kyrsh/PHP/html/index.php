@@ -19,7 +19,7 @@ try {
     $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     // Запрос категорий
-    $stmt = $pdo->query("SELECT id, name, url FROM categories");
+    $stmt = $pdo->query("SELECT id, name, slug FROM categories");
     $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     header('Content-Type: application/json');
