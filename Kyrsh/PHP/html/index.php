@@ -23,7 +23,7 @@ try {
         exit;
     }
 
-    // Получение товаров
+    // Получение товаров по категории или всех товаров
     if (isset($_GET['category'])) {
         $category = $_GET['category'];
         $stmt = $pdo->prepare("SELECT p.id, p.name, p.description, p.price, p.main_image_url AS image, p.is_popular, p.created_at 
@@ -32,6 +32,7 @@ try {
                                WHERE c.slug = :category");
         $stmt->execute(['category' => $category]);
         $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $popular_products = [];
     } else {
         // Получение случайных популярных товаров
         $stmt_popular = $pdo->query("SELECT id, name, description, price, main_image_url AS image, is_popular, created_at 
@@ -46,21 +47,21 @@ try {
         if (count($popular_ids) > 0) {
             $placeholders = str_repeat('?,', count($popular_ids) - 1) . '?';
             $stmt = $pdo->prepare("SELECT id, name, description, price, main_image_url AS image, is_popular, created_at 
-                                   FROM products WHERE is_popular = FALSE OR id NOT IN ($placeholders)");
+                                   FROM products WHERE id NOT IN ($placeholders)");
             $stmt->execute($popular_ids);
         } else {
             $stmt = $pdo->query("SELECT id, name, description, price, main_image_url AS image, is_popular, created_at 
-                                 FROM products WHERE is_popular = FALSE");
+                                 FROM products");
         }
         
         $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        // Объединение результатов
-        $products = array_merge($popular_products, $products);
     }
 
     header('Content-Type: application/json');
-    echo json_encode($products);
+    echo json_encode([
+        'popular_products' => $popular_products,
+        'products' => $products
+    ]);
 
 } catch (PDOException $e) {
     echo "Connection failed: " . $e->getMessage();

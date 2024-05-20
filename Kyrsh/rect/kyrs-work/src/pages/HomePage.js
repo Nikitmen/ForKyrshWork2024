@@ -1,27 +1,34 @@
-// HomePage.js
 import React, { useEffect, useState } from 'react';
 import Header from '../components/Header';
-// import { Link } from 'react-router-dom';
 import ProductList from '../components/ProductList';
 import './HomePage.css';
 
 const HomePage = () => {
   const [products, setProducts] = useState([]);
+  const [popularProducts, setPopularProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('');
 
   useEffect(() => {
     fetch('http://localhost/index.php?action=getCategories')
       .then(response => response.json())
-      .then(data => setCategories(data));
+      .then(data => setCategories(data))
+      .catch(error => console.error('Error fetching categories:', error));
 
-    fetch(`http://localhost/index.php${selectedCategory ? `?category=${selectedCategory}` : ''}`)
+    const categoryParam = selectedCategory ? `?category=${selectedCategory}` : '';
+    fetch(`http://localhost/index.php${categoryParam}`)
       .then(response => response.json())
-      .then(data => setProducts(data));
+      .then(data => {
+        if (selectedCategory) {
+          setProducts(data.products);
+          setPopularProducts([]);
+        } else {
+          setPopularProducts(data.popular_products);
+          setProducts(data.products);
+        }
+      })
+      .catch(error => console.error('Error fetching products:', error));
   }, [selectedCategory]);
-
-  const popularProducts = products.filter(product => product.is_popular);
-  const regularProducts = products.filter(product => !product.is_popular);
 
   return (
     <div className="homepage">
@@ -33,22 +40,26 @@ const HomePage = () => {
             onClick={() => setSelectedCategory(category.slug)}
             className={`category-card ${selectedCategory === category.slug ? 'active' : ''}`}
           >
-            {category.name}
+            <span className="category-name">{category.name}</span>
           </button>
         ))}
       </div>
       <div className="content">
         <div className="main-content">
-          <h2>Товары</h2>
-          <ProductList products={regularProducts} />
+          <h2>Все товары</h2>
+          <ProductList products={products} />
+          <aside className="sidebar">
+            {popularProducts.length > 0 && (
+              <>
+                <h2>Популярные товары</h2>
+                <ProductList products={popularProducts} />
+              </>
+            )}
+          </aside>
         </div>
-        <aside className="sidebar">
-          <h2>Популярные товары</h2>
-          <ProductList products={popularProducts} />
-        </aside>
       </div>
     </div>
   );
-}
+};
 
 export default HomePage;
