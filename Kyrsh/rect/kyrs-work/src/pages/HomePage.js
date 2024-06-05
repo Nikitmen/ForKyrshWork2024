@@ -47,8 +47,6 @@ const HomePage = () => {
         </div>
         <div className="content">
           <div className="main-content">
-            <h2>Все товары</h2>
-            <ProductList products={products} />
             <aside className="sidebar">
               {popularProducts.length > 0 && (
                 <>
@@ -57,6 +55,8 @@ const HomePage = () => {
                 </>
               )}
             </aside>
+            <h2>Все товары</h2>
+            <ProductList products={products} />
           </div>
         </div>
       </div>

@@ -9,7 +9,7 @@ const formatDate = (dateString) => {
 
 const ProductCard = ({ product }) => {
   return (
-    <Link to={`/product/${product.id}`}>
+    <Link to={`/product/${product.id}`} style={{ textDecoration: 'none' }}>
       <div>
         <div className="product-card">
           <img src={product.image} alt={product.name} />

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import Header from '../components/Header';
 import './Auth.css';
 
 const Login = () => {
@@ -27,29 +28,32 @@ const Login = () => {
   };
 
   return (
-    <div className="auth-container">
-      <h2>Войти в профиль</h2>
-      <form onSubmit={handleSubmit} className="auth-form">
-        <input
-          type="text"
-          placeholder="Логин"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          className="auth-input"
-        />
-        <input
-          type="password"
-          placeholder="Пароль"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className="auth-input"
-        />
-        <button type="submit" className="auth-button">Войти</button>
-      </form>
-      {message && <p className="auth-message">{message}</p>}
-      <p className="auth-switch">
-        У вас нет аккаунта? <Link to="/register">Зарегистрируйтесь</Link>
-      </p>
+    <div>
+      <Header />
+      <div className="auth-container">
+        <h2>Войти в профиль</h2>
+        <form onSubmit={handleSubmit} className="auth-form">
+          <input
+            type="text"
+            placeholder="Логин"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            className="auth-input"
+          />
+          <input
+            type="password"
+            placeholder="Пароль"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="auth-input"
+          />
+          <button type="submit" className="auth-button">Войти</button>
+        </form>
+        {message && <p className="auth-message">{message}</p>}
+        <p className="auth-switch">
+          У вас нет аккаунта? <Link to="/register">Зарегистрируйтесь</Link>
+        </p>
+      </div>
     </div>
   );
 };

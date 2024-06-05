@@ -15,7 +15,6 @@ const AddProduct = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Fetch categories
     fetch('http://localhost/index.php?action=getCategories')
       .then(response => response.json())
       .then(data => setCategories(data));
