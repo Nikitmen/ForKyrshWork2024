@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Header from '../components/Header';
 import './AddProduct.css';
 
 const AddProduct = () => {
@@ -17,12 +18,13 @@ const AddProduct = () => {
   useEffect(() => {
     fetch('http://localhost/index.php?action=getCategories')
       .then(response => response.json())
-      .then(data => setCategories(data));
+      .then(data => setCategories(data))
+      .catch(error => console.error('Error fetching categories:', error));
   }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch('http://localhost/index.php?action=addProduct', {
+    const response = await fetch('http://localhost/create_new_product.php', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -32,80 +34,79 @@ const AddProduct = () => {
         category_id: category,
         main_image_url: mainImageUrl,
         full_description: fullDescription,
-        address
+        address,
       }),
     });
     const data = await response.json();
 
     if (data.status === 'success') {
       setMessage('Product added successfully!');
-      navigate('/'); 
+      navigate('/');
     } else {
       setMessage(`Error: ${data.message}`);
     }
   };
 
   return (
-    <div className="auth-container">
-      <h2>Add Product</h2>
-      <form onSubmit={handleSubmit} className="auth-form">
-        <input
-          type="text"
-          placeholder="Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          className="auth-input"
-          required
-        />
-        <textarea
-          placeholder="Description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          className="auth-input"
-          required
-        />
-        <input
-          type="number"
-          placeholder="Price"
-          value={price}
-          onChange={(e) => setPrice(e.target.value)}
-          className="auth-input"
-          required
-        />
-        <select
-          value={category}
-          onChange={(e) => setCategory(e.target.value)}
-          className="auth-input"
-          required
-        >
-          <option value="">Select Category</option>
-          {categories.map((category) => (
-            <option key={category.id} value={category.id}>{category.name}</option>
-          ))}
-        </select>
-        <input
-          type="text"
-          placeholder="Main Image URL"
-          value={mainImageUrl}
-          onChange={(e) => setMainImageUrl(e.target.value)}
-          className="auth-input"
-        />
-        <textarea
-          placeholder="Full Description"
-          value={fullDescription}
-          onChange={(e) => setFullDescription(e.target.value)}
-          className="auth-input"
-        />
-        <input
-          type="text"
-          placeholder="Address"
-          value={address}
-          onChange={(e) => setAddress(e.target.value)}
-          className="auth-input"
-        />
-        <button type="submit" className="auth-button">Add Product</button>
-      </form>
-      {message && <p className="auth-message">{message}</p>}
+    <div>
+      <Header />
+      <div className="add-product-container">
+        <h2>Добавить товар</h2>
+        <form onSubmit={handleSubmit} className="add-product-form">
+          <input
+            type="text"
+            placeholder="Название"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
+          <textarea
+            placeholder="Описание"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            required
+          />
+          <input
+            type="number"
+            placeholder="Цена"
+            value={price}
+            onChange={(e) => setPrice(e.target.value)}
+            required
+          />
+          <select
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+            required
+          >
+            <option value="">Выберите категорию</option>
+            {categories.map((category) => (
+              <option key={category.id} value={category.id}>
+                {category.name}
+              </option>
+            ))}
+          </select>
+          <input
+            type="text"
+            placeholder="URL главного изображения"
+            value={mainImageUrl}
+            onChange={(e) => setMainImageUrl(e.target.value)}
+          />
+          <textarea
+            placeholder="Полное описание"
+            value={fullDescription}
+            onChange={(e) => setFullDescription(e.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="Адрес"
+            value={address}
+            onChange={(e) => setAddress(e.target.value)}
+            required
+          />
+          <button type="submit">Добавить товар</button>
+        </form>
+        {message && <p>{message}</p>}
+      </div>
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import Header from '../components/Header';
 import './Profile.css';
 
@@ -28,6 +28,7 @@ const Profile = () => {
                     <p><strong>Ваш email:</strong> {user.email}</p>
                     <p><strong>Ваш адрес:</strong> {user.address}</p>
                     <button onClick={handleLogout} className="logout-button">Выйти</button>
+                    <Link to="/add-product" className="add-product-link">Добавить товар</Link>
                 </div>
             </div>
         </div>

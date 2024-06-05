@@ -1,67 +1,46 @@
-.auth-container {
-    max-width: 600px;
-    margin: 75px auto;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    background-color: #f9f9f9;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .auth-container h2 {
-    margin-bottom: 20px;
-    text-align: center;
-  }
-  
-  .auth-form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .auth-input {
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-  }
-  
-  .auth-input:focus {
-    outline: none;
-    border-color: #007bff;
-  }
-  
-  .auth-button {
-    padding: 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-  }
-  
-  .auth-button:hover {
-    background-color: #0056b3;
-  }
-  
-  .auth-message {
-    margin-top: 20px;
-    text-align: center;
-    color: red;
-  }
-  
-  .auth-switch {
-    margin-top: 10px;
-    text-align: center;
-  }
-  
-  .auth-switch a {
-    color: #007bff;
-    text-decoration: none;
-  }
-  
-  .auth-switch a:hover {
-    text-decoration: underline;
-  }
-  
+.add-product-container {
+  width: 400px;
+  margin: 75px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.add-product-container h2 {
+  margin-top: 0;
+}
+
+.add-product-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.add-product-form input,
+.add-product-form textarea,
+.add-product-form select {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.add-product-form select {
+  padding: 10px 5px; 
+}
+
+.add-product-form button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.add-product-form button:hover {
+  background-color: #0056b3;
+}
+
+.add-product-form p {
+  margin-top: 10px;
+}
