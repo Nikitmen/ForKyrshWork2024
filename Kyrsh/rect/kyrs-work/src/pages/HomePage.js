@@ -9,17 +9,12 @@ const HomePage = () => {
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('');
 
-  useEffect(() => {
-    fetch('http://localhost/index.php?action=getCategories')
-      .then(response => response.json())
-      .then(data => setCategories(data))
-      .catch(error => console.error('Error fetching categories:', error));
-
-    const categoryParam = selectedCategory ? `?category=${selectedCategory}` : '';
+  const fetchProducts = (category = '') => {
+    const categoryParam = category ? `?category=${category}` : '';
     fetch(`http://localhost/index.php${categoryParam}`)
       .then(response => response.json())
       .then(data => {
-        if (selectedCategory) {
+        if (category) {
           setProducts(data.products);
           setPopularProducts([]);
         } else {
@@ -28,17 +23,34 @@ const HomePage = () => {
         }
       })
       .catch(error => console.error('Error fetching products:', error));
-  }, [selectedCategory]);
+  };
+
+  useEffect(() => {
+    fetch('http://localhost/index.php?action=getCategories')
+      .then(response => response.json())
+      .then(data => setCategories(data))
+      .catch(error => console.error('Error fetching categories:', error));
+
+    fetchProducts();
+  }, []);
+
+  const handleHomeClick = () => {
+    setSelectedCategory('');
+    fetchProducts();
+  };
 
   return (
     <div>
-      <Header />
+      <Header onHomeClick={handleHomeClick} />
       <div className="homepage">
         <div className="categories">
           {categories.map(category => (
             <button
               key={category.id}
-              onClick={() => setSelectedCategory(category.slug)}
+              onClick={() => {
+                setSelectedCategory(category.slug);
+                fetchProducts(category.slug);
+              }}
               className={`category-card ${selectedCategory === category.slug ? 'active' : ''}`}
             >
               <span className="category-name">{category.name}</span>

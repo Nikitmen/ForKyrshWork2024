@@ -1,15 +1,23 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom'
 import './Header.css';
 
-const Header = ({ onSearch, cartItemCount }) => {
+const Header = ({ onHomeClick  }) => {
+
+  const navigate = useNavigate();
+
+  const handleLogoClick = () => {
+    if (onHomeClick) onHomeClick();
+    navigate('/');
+  };
+
   return (
     <header className="header">
       <div className="header-content">
         <div className="logo">
-          <Link to="/" className="logo-link">
-            <h1>Подержанная Мебель</h1>
-          </Link>
+          <div className="logo-link">
+            <h1 onClick={handleLogoClick}>Подержанная Мебель</h1>
+          </div>
         </div>
         <div className="header-links">
           <Link to="/profile" className="profile-link">
@@ -22,3 +30,4 @@ const Header = ({ onSearch, cartItemCount }) => {
 };
 
 export default Header;
+

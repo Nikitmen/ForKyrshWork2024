@@ -39,7 +39,7 @@ const AddProduct = () => {
 
     if (data.status === 'success') {
       setMessage('Product added successfully!');
-      navigate('/'); // Redirect to home page or products list page
+      navigate('/'); 
     } else {
       setMessage(`Error: ${data.message}`);
     }
