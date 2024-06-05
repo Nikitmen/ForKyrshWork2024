@@ -13,6 +13,7 @@ const AddProduct = () => {
   const [address, setAddress] = useState('');
   const [categories, setCategories] = useState([]);
   const [message, setMessage] = useState('');
+  const [email, setEmail] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -34,6 +35,7 @@ const AddProduct = () => {
         category_id: category,
         main_image_url: mainImageUrl,
         full_description: fullDescription,
+        email,
         address,
       }),
     });
@@ -85,6 +87,12 @@ const AddProduct = () => {
               </option>
             ))}
           </select>
+          <input
+            type="email" 
+            placeholder="Ваш Email" 
+            value={email} 
+            onChange={(e) => setEmail(e.target.value)} 
+          />
           <input
             type="text"
             placeholder="URL главного изображения"

@@ -21,10 +21,11 @@ try {
         $category_id = $data['category_id'];
         $main_image_url = isset($data['main_image_url']) ? $data['main_image_url'] : null;
         $full_description = isset($data['full_description']) ? $data['full_description'] : null;
+        $email = $data['email'];
         $address = $data['address'];
 
-        $stmt = $pdo->prepare("INSERT INTO products (name, description, price, category_id, main_image_url, full_description, address) VALUES (?, ?, ?, ?, ?, ?, ?)");
-        $stmt->execute([$name, $description, $price, $category_id, $main_image_url, $full_description, $address]);
+        $stmt = $pdo->prepare("INSERT INTO products (name, description, price, category_id, main_image_url, full_description, email, address) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt->execute([$name, $description, $price, $category_id, $main_image_url, $full_description, $email, $address]);
 
         echo json_encode(['status' => 'success']);
     } else {
