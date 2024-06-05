@@ -23,9 +23,10 @@ const Profile = () => {
             <div className="pr">
                 <div className="profile-container">
                     <h2>Ваш профиль</h2>
-                    <p><strong>Здравствуйте, {user.full_name}!</strong></p>
+                    <p><strong>Здравствуйте, {user.first_name} {user.middle_name}!</strong></p>
                     <p><strong>Ваш логин:</strong> {user.username}</p>
                     <p><strong>Ваш email:</strong> {user.email}</p>
+                    <p><strong>Ваш адрес:</strong> {user.address}</p>
                     <button onClick={handleLogout} className="logout-button">Выйти</button>
                 </div>
             </div>

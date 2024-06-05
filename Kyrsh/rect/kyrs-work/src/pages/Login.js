@@ -19,11 +19,11 @@ const Login = () => {
     const data = await response.json();
 
     if (data.status === 'success') {
-      setMessage('Login successful!');
+      setMessage('Авторизация успешна!');
       localStorage.setItem('user', JSON.stringify(data.user));
       navigate('/profile');
     } else {
-      setMessage(`Error: ${data.message}`);
+      setMessage(`Ошибка: ${data.message}`);
     }
   };
 
