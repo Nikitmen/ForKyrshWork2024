@@ -98,7 +98,7 @@ const Register = () => {
           </select>
           <input
             type="text"
-            placeholder="Address"
+            placeholder="Ваш Адрес"
             value={address}
             onChange={(e) => setAddress(e.target.value)}
             className="auth-input"

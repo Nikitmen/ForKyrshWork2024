@@ -71,8 +71,13 @@ const AddProduct = () => {
           <input
             type="number"
             placeholder="Цена"
+            min={0}
             value={price}
-            onChange={(e) => setPrice(e.target.value)}
+            onChange={(e) => {
+              if (e.target.value >= 0) {
+                setPrice(e.target.value)
+              }
+            }}
             required
           />
           <select
@@ -88,10 +93,10 @@ const AddProduct = () => {
             ))}
           </select>
           <input
-            type="email" 
-            placeholder="Ваш Email" 
-            value={email} 
-            onChange={(e) => setEmail(e.target.value)} 
+            type="email"
+            placeholder="Ваш Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
           <input
             type="text"
